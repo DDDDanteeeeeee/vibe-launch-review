@@ -1,0 +1,41 @@
+name: Review gap
+description: Report a missing or unclear Vibe Launch Review case.
+title: "[Review gap]: "
+labels:
+  - review-gap
+body:
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Scenario
+      description: Describe the launch review scenario using mock or redacted details only.
+    validations:
+      required: true
+  - type: dropdown
+    id: gate
+    attributes:
+      label: Primary gate
+      options:
+        - SMS/email interface abuse
+        - UGC moderation
+        - Image/file upload
+        - AI prompt/model-call exposure
+        - Demo-to-public-product gap
+        - Cross-gate
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected review behavior
+      description: What should the skill identify or avoid?
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: I did not include credentials, cookies, tokens, private code, customer data, or account data.
+          required: true
+
