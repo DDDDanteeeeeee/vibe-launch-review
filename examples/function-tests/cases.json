@@ -1,0 +1,184 @@
+{
+  "cases": [
+    {
+      "id": "zh-blocks-all-five-public-launch-risks",
+      "input": "examples/zh-realistic-vibe-app/launch-notes.md",
+      "output": "examples/zh-realistic-vibe-app/review-output.md",
+      "expected_verdict": "BLOCK_PUBLIC_LAUNCH",
+      "expected_language": "zh",
+      "strict_localized_labels": true,
+      "min_findings": 5,
+      "required_phrases": [
+        "短信",
+        "UGC",
+        "图片",
+        "AI",
+        "?admin=true",
+        "证据新鲜度"
+      ],
+      "forbidden_phrases": [
+        "SQL injection",
+        "OWASP Top 10"
+      ]
+    },
+    {
+      "id": "en-private-beta-for-evidence-gaps",
+      "input": "examples/function-tests/evidence-gap-input.md",
+      "output": "examples/function-tests/evidence-gap-output.md",
+      "expected_verdict": "PRIVATE_BETA_ONLY",
+      "expected_language": "en",
+      "min_findings": 3,
+      "required_phrases": [
+        "evidence_gap",
+        "does not invent findings",
+        "private beta"
+      ],
+      "forbidden_phrases": [
+        "SQL injection",
+        "XSS",
+        "I will implement"
+      ]
+    },
+    {
+      "id": "en-public-ready-for-static-no-surface-case",
+      "input": "examples/function-tests/static-ready-input.md",
+      "output": "examples/function-tests/static-ready-output.md",
+      "expected_verdict": "PUBLIC_LAUNCH_READY",
+      "expected_language": "en",
+      "min_findings": 0,
+      "required_phrases": [
+        "within the five-gate scope",
+        "Not applicable",
+        "does not implement fixes"
+      ],
+      "forbidden_phrases": [
+        "BLOCK_PUBLIC_LAUNCH",
+        "PRIVATE_BETA_ONLY",
+        "diff --git"
+      ]
+    },
+    {
+      "id": "en-conditional-launch-for-claimed-controls-with-proof-gaps",
+      "input": "examples/function-tests/conditional-launch-input.md",
+      "output": "examples/function-tests/conditional-launch-output.md",
+      "expected_verdict": "CONDITIONAL_LAUNCH",
+      "expected_language": "en",
+      "min_findings": 3,
+      "required_phrases": [
+        "claimed but not evidenced",
+        "evidence_gap",
+        "before public launch"
+      ],
+      "forbidden_phrases": [
+        "BLOCK_PUBLIC_LAUNCH",
+        "PUBLIC_LAUNCH_READY",
+        "diff --git"
+      ]
+    },
+    {
+      "id": "zh-delivery-acceptance-for-nontechnical-reader",
+      "input": "examples/function-tests/delivery-acceptance-input.md",
+      "output": "examples/function-tests/delivery-acceptance-output.md",
+      "expected_verdict": "CONDITIONAL_LAUNCH",
+      "expected_language": "zh",
+      "strict_localized_labels": true,
+      "min_findings": 0,
+      "required_phrases": [
+        "当前状态：可进入受控商业试点",
+        "允许范围：受控商业试点",
+        "暂缓范围：公开自助使用和大规模公开发布",
+        "不建议直接大规模公开发布",
+        "当前商业模式",
+        "证据新鲜度",
+        "模块验收表",
+        "受控试点允许范围",
+        "公开发布前必须补齐",
+        "不直接修改代码"
+      ],
+      "forbidden_phrases": [
+        "SQL injection",
+        "OWASP",
+        "diff --git",
+        "apply_patch"
+      ]
+    },
+    {
+      "id": "zh-standalone-app-project-type-applicability",
+      "input": "examples/function-tests/standalone-app-applicability-input.md",
+      "output": "examples/function-tests/standalone-app-applicability-output.md",
+      "expected_verdict": "CONDITIONAL_LAUNCH",
+      "expected_language": "zh",
+      "strict_localized_labels": true,
+      "min_findings": 2,
+      "required_phrases": [
+        "项目类型：独立桌面应用",
+        "UGC 审核：不适用",
+        "不因为没有社区功能而强行列为风险",
+        "审查重点：AI 模型调用和 Demo 到公开产品差距",
+        "证据新鲜度",
+        "不直接修改代码"
+      ],
+      "forbidden_phrases": [
+        "SQL injection",
+        "OWASP",
+        "社区管控风险",
+        "diff --git",
+        "apply_patch"
+      ]
+    },
+    {
+      "id": "zh-ai-catalog-controlled-paid-pilot-calibration",
+      "input": "examples/function-tests/ai-catalog-controlled-pilot-input.md",
+      "output": "examples/function-tests/ai-catalog-controlled-pilot-output.md",
+      "expected_verdict": "CONDITIONAL_LAUNCH",
+      "expected_language": "zh",
+      "strict_localized_labels": true,
+      "min_findings": 4,
+      "required_phrases": [
+        "controlled paid pilot",
+        "public self-serve launch",
+        "Context Intake",
+        "允许范围",
+        "暂缓范围",
+        "是否阻塞受控试点",
+        "是否阻塞公开发布",
+        "证据新鲜度",
+        "不是公开自助 SaaS",
+        "点数余额限制的是单账号成本",
+        "Previously verified, not rerun",
+        "不直接阻塞受控试点",
+        "本报告不实施修复"
+      ],
+      "forbidden_phrases": [
+        "BLOCK_PUBLIC_LAUNCH",
+        "PUBLIC_LAUNCH_READY",
+        "diff --git",
+        "apply_patch",
+        "免费开放模型接口"
+      ]
+    },
+    {
+      "id": "zh-fix-request-still-review-only",
+      "input": "examples/function-tests/zh-fix-request-input.md",
+      "output": "examples/function-tests/zh-fix-request-output.md",
+      "expected_verdict": "BLOCK_PUBLIC_LAUNCH",
+      "expected_language": "zh",
+      "strict_localized_labels": true,
+      "min_findings": 5,
+      "required_phrases": [
+        "不实施修复",
+        "不生成 patch",
+        "证据新鲜度",
+        "邮箱验证码",
+        "举报按钮",
+        "/api/ai/plan"
+      ],
+      "forbidden_phrases": [
+        "diff --git",
+        "apply_patch",
+        "我来修复",
+        "SQL injection"
+      ]
+    }
+  ]
+}
