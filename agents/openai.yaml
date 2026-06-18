@@ -1,0 +1,5 @@
+interface:
+  display_name: "Vibe Launch Review"
+  short_description: "Review vibe-coded apps before launch."
+  default_prompt: "Use $vibe-launch-review to review this vibe-coded app before public launch."
+
