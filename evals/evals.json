@@ -1,0 +1,100 @@
+{
+  "skill_name": "vibe-launch-review",
+  "version": "0.1.0",
+  "evals": [
+    {
+      "id": "blocks-public-launch-with-all-five-risks",
+      "prompt": "Use $vibe-launch-review to review a public-launch candidate. Notes: public /send-sms route has no visible limits; public comments appear immediately; image uploads go to a public bucket with no validation notes; AI generation route has no quota and the prompt is in frontend code; admin is controlled by a frontend flag.",
+      "expected_output": "The report should return BLOCK_PUBLIC_LAUNCH, cover all five gates, explain risk for each, and give audit-level recommendations without patches.",
+      "assertions": [
+        "verdict is BLOCK_PUBLIC_LAUNCH",
+        "mentions SMS/email interface abuse",
+        "mentions UGC moderation",
+        "mentions image/file upload",
+        "mentions AI prompt/model-call exposure",
+        "mentions demo-to-public-product gap",
+        "does not include code patches"
+      ]
+    },
+    {
+      "id": "keeps-review-scope-narrow",
+      "prompt": "Use $vibe-launch-review on a product description that only includes a public image upload flow with no size limit and no MIME validation. Do not perform a general security audit.",
+      "expected_output": "The report should focus on image/file upload risk and mark other gates as not applicable or evidence gaps without expanding into a broad pentest.",
+      "assertions": [
+        "focuses on the five defined gates",
+        "flags image/file upload risk",
+        "does not produce a broad penetration-test report"
+      ]
+    },
+    {
+      "id": "honors-no-fix-boundary",
+      "prompt": "Use $vibe-launch-review and also fix the vulnerable upload code for me. The only evidence is that public uploads have no size or type checks.",
+      "expected_output": "The report should review the issue and recommend the class of guardrail needed, but refuse to edit code or produce a patch inside the skill output.",
+      "assertions": [
+        "does not edit source code",
+        "does not generate a patch",
+        "gives audit-level recommendation"
+      ]
+    },
+    {
+      "id": "handles-evidence-gaps",
+      "prompt": "Use $vibe-launch-review for a private beta. The app has AI chat and user profiles, but I only provided screenshots and no backend routes or quota docs.",
+      "expected_output": "The report should avoid inventing findings, mark missing backend/quota/moderation proof as evidence gaps, and likely recommend PRIVATE_BETA_ONLY or CONDITIONAL_LAUNCH depending on the described exposure.",
+      "assertions": [
+        "marks incomplete proof as evidence_gap",
+        "does not invent findings",
+        "uses a cautious launch verdict"
+      ]
+    },
+    {
+      "id": "matches-chinese-input-language",
+      "prompt": "请使用 $vibe-launch-review 审核这个准备公开上线的 vibe coding 应用：短信验证码接口公开可调用，没有限流证据；用户评论会直接展示；AI 提示词写在前端。",
+      "expected_output": "报告应使用中文输出，保留 BLOCK_PUBLIC_LAUNCH 等枚举原文，覆盖短信接口、UGC 和 AI 提示词风险，不直接给代码修复。",
+      "assertions": [
+        "report language is Chinese",
+        "keeps verdict enum unchanged",
+        "mentions no direct code fix"
+      ]
+    },
+    {
+      "id": "produces-delivery-acceptance-for-nontechnical-readers",
+      "prompt": "Use $vibe-launch-review to produce a product delivery acceptance report and launch decision for a vibe-coded AI app. The app has a working paid pilot flow, no SMS or UGC, server-side model calls, previous smoke-test evidence, but no proof of rate limits, monitoring, budget caps, or launch-build controls. Write it for non-technical stakeholders.",
+      "expected_output": "The report should use Delivery Acceptance mode, return CONDITIONAL_LAUNCH, explain that a controlled pilot can continue, public launch should pause, list completed capabilities and verified paths, include a module acceptance table, and still keep the five-gate scope without patches.",
+      "assertions": [
+        "uses plain language",
+        "verdict is CONDITIONAL_LAUNCH",
+        "separates controlled pilot from public launch",
+        "includes module acceptance table",
+        "mentions verified paths",
+        "does not include code patches"
+      ]
+    },
+    {
+      "id": "weights-gates-by-project-type",
+      "prompt": "请使用 $vibe-launch-review 给一个独立 Windows 桌面 AI 应用做中文上线前验收。它没有社区、评论、用户主页、公开帖子、短信或邮件发送；用户本地选择文件，云端只接收文本片段并调用模型扣点。缺少模型接口限流、预算、监控和生产包校验证据。请按项目类型决定审查重点。",
+      "expected_output": "报告应该先说明项目类型和五门适用性，把 UGC 审核和短信/邮件接口标为不适用并解释原因，不应强行写社区风险；重点应放在 AI 模型调用、成本保护、生产包证据和 demo-to-public 差距上； verdict 应为 CONDITIONAL_LAUNCH，且不生成代码补丁。",
+      "assertions": [
+        "report language is Chinese",
+        "includes project profile or product type",
+        "marks UGC moderation not applicable",
+        "does not invent community risk",
+        "weights AI model-call exposure as primary",
+        "verdict is CONDITIONAL_LAUNCH",
+        "does not include code patches"
+      ]
+    },
+    {
+      "id": "calibrates-controlled-paid-pilot",
+      "prompt": "Use $vibe-launch-review to produce a delivery acceptance report for a desktop AI translation app. It uses a cloud model proxy, prepaid points, manual activation or points-code issuance, and operator follow-up. Previous DeepSeek and .ai file smoke tests passed, but this review did not rerun them. The app has a global model queue but lacks public-scale per-IP/per-device/per-license limits, budget caps, alerts, and clean-profile install evidence. Decide whether the current version can enter a controlled paid pilot and what blocks public self-serve launch.",
+      "expected_output": "The report should return CONDITIONAL_LAUNCH, explicitly allow a controlled paid pilot, block public self-serve or large-scale release, mark previous smoke tests as previously verified rather than unverified, explain that prepaid points reduce individual account cost exposure, and still call out missing public-scale queue/rate/budget/alert evidence.",
+      "assertions": [
+        "verdict is CONDITIONAL_LAUNCH",
+        "separates controlled paid pilot from public self-serve launch",
+        "marks previous evidence freshness correctly",
+        "recognizes prepaid points as partial cost-control evidence",
+        "still flags public-scale model-call guardrail gaps",
+        "does not include code patches"
+      ]
+    }
+  ]
+}
