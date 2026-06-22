@@ -76,6 +76,34 @@
       ]
     },
     {
+      "id": "en-public-self-serve-ai-saas-blocks-public-launch",
+      "input": "examples/function-tests/public-self-serve-ai-saas-input.md",
+      "output": "examples/function-tests/public-self-serve-ai-saas-output.md",
+      "expected_verdict": "BLOCK_PUBLIC_LAUNCH",
+      "expected_language": "en",
+      "min_findings": 3,
+      "requires_workflow": true,
+      "requires_evidence_ledger": true,
+      "requires_scope_impact": true,
+      "required_phrases": [
+        "public self-serve launch",
+        "four-stage workflow",
+        "Evidence Ledger",
+        "rate limit",
+        "budget cap",
+        "alerting",
+        "circuit breaker",
+        "Blocks public self-serve launch",
+        "does not implement fixes"
+      ],
+      "forbidden_phrases": [
+        "CONDITIONAL_LAUNCH",
+        "PUBLIC_LAUNCH_READY",
+        "diff --git",
+        "apply_patch"
+      ]
+    },
+    {
       "id": "zh-delivery-acceptance-for-nontechnical-reader",
       "input": "examples/function-tests/delivery-acceptance-input.md",
       "output": "examples/function-tests/delivery-acceptance-output.md",

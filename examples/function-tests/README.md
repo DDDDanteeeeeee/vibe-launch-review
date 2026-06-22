@@ -7,6 +7,7 @@ The suite covers:
 - A Chinese public-launch case that must block launch across all five gates.
 - An English evidence-gap case that should stay private beta and avoid invented findings.
 - An English conditional-launch case where guardrails are claimed but not fully evidenced.
+- An English public self-serve AI SaaS case where missing model-call limits, budget caps, alerts, and circuit breakers must block public launch.
 - An English static-site case that should be launch-ready within the five-gate scope.
 - A Chinese delivery-acceptance case for non-technical readers that explains controlled pilot scope and public-launch blockers in plain language.
 - A Chinese standalone-app case that proves project type controls gate applicability, so missing community features do not become fake UGC risks.
