@@ -2,6 +2,8 @@
 
 Use this guide to decide what evidence is enough for a real launch review.
 
+Build an Evidence Ledger before the verdict when evidence freshness or launch scope could be misread. The ledger should connect each evidence item to its source, freshness, related gate, current allowed scope effect, public scope effect, and needed proof.
+
 ## Evidence Quality
 
 Prefer evidence in this order:
@@ -37,6 +39,8 @@ Separate evidence by freshness:
 Do not say "not verified" when there is credible previous evidence. Instead, say what was previously verified and what was not rerun this time.
 
 For delivery acceptance reports, turn freshness into plain language. Example: "This path has passed a previous smoke test, but we did not rerun it in this review."
+
+For audit reports, keep the Evidence Ledger compact. For delivery reports, fold the ledger into verified paths, module acceptance, risks, and public-launch proof needed unless the user asks for the raw audit record.
 
 ## Business Model And Launch Scope Evidence
 

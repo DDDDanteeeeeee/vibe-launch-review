@@ -50,6 +50,8 @@ Do not judge every product as a public, free, self-serve SaaS. First classify th
 
 For a `controlled_paid_pilot`, missing public-scale protection can justify `CONDITIONAL_LAUNCH` instead of `BLOCK_PUBLIC_LAUNCH` when the core business loop is proven and operator follow-up is explicit. For `public_self_serve` or `large_scale_public_release`, the same missing protection can block launch.
 
+Use the four-stage workflow and Evidence Ledger to make this distinction explicit. The review should show what evidence supports the current allowed scope, what proof is stale, and what missing evidence blocks public self-serve launch.
+
 Calibration pattern:
 
 | Pattern | Correct weighting |
@@ -57,6 +59,12 @@ Calibration pattern:
 | Standalone desktop app + cloud model proxy + prepaid points + manual code issuance | Treat model-call exposure and demo-to-public gap as primary. Treat prepaid balance as partial cost-control evidence. Require public-scale queue, rate, budget, alert, and resilience evidence before broad release. |
 | Free public AI route without quota or account binding | Treat as blocker-level model-call exposure for public launch. |
 | Manual operator service with no public self-serve route | Separate operator-process risk from public abuse risk. Do not invent public-route findings without evidence. |
+
+Public self-serve AI SaaS contrast:
+
+- Unknown users can access the model route without operator review.
+- A free trial, public signup, or self-serve purchase flow can scale cost quickly.
+- Missing per-user/per-IP limits, provider budget caps, alerts, queue controls, or circuit breakers should block public self-serve launch until evidence exists.
 
 ## Scope Impact For Each Risk
 

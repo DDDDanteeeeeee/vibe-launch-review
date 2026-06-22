@@ -6,6 +6,8 @@ Use this audit template for security review, code review, raw five-gate review, 
 
 If the user asks for product delivery acceptance, current version acceptance, launch decision, controlled commercial pilot readiness, or a report for non-technical stakeholders, use `delivery-acceptance-template.md` instead. Keep the same five-gate risk scope, but present the result as a product decision.
 
+Follow `workflow-architecture.md`: first establish Context Intake, then review the five gates, then build an Evidence Ledger, then decide the scoped verdict. Use `evidence-ledger.md` when evidence freshness or allowed/blocked scope is easy to confuse.
+
 ```md
 # Vibe Launch Review
 
@@ -58,6 +60,14 @@ For paid or quota-based products, explain which risks are limited by the busines
 | Image/file upload | Pass / Issue / Evidence gap / Not applicable | |
 | AI prompt/model-call exposure | Pass / Issue / Evidence gap / Not applicable | |
 | Demo-to-public-product gap | Pass / Issue / Evidence gap / Not applicable | |
+
+## Evidence Ledger
+
+Keep this compact. It should explain how the verdict was reached, not bury the reader.
+
+| Evidence item | Source | Evidence freshness | Related gate | Current allowed scope effect | Public scope effect | Needed proof |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  | Verified in this review / Previously verified, not rerun / Not verified |  | Blocks current allowed scope? Yes / No. Why: | Blocks public self-serve launch or large-scale release? Yes / No. Why: |  |
 
 ## Findings
 

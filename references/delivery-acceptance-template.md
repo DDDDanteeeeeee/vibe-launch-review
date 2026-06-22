@@ -14,6 +14,7 @@ The review scope is still limited to the five Vibe Launch Review gates. This tem
 - First explain what type of product is being reviewed, then focus the report on the gates that actually apply to that product.
 - Mark gates as "Not applicable" when the product truly has no matching surface. Give a short reason instead of inventing a risk.
 - Do not hide evidence gaps, but do not bury the reader in raw audit wording.
+- Use the Evidence Ledger as a behind-the-scenes proof check. In the final report, usually compress it into verified paths, module acceptance, current risks, and must-have proof before public launch.
 - Do not include implementation code, patches, package recommendations, or step-by-step service configuration.
 - Calibrate the report by business model and launch scope before judging blockers. A controlled paid pilot with manual code issuance should not be judged as if it were a large-scale public self-serve SaaS launch.
 - Separate "blocks current controlled scope" from "blocks public launch". Missing public-scale guardrails can block public launch without blocking a small manually operated pilot.
@@ -87,6 +88,14 @@ Use these freshness labels:
 - Verified in this review:
 - Previously verified, not rerun:
 - Not verified:
+
+Evidence Ledger checkpoint:
+
+| Evidence item | Evidence freshness | Current allowed scope effect | Public scope effect | Needed proof |
+| --- | --- | --- | --- | --- |
+|  | Verified in this review / Previously verified, not rerun / Not verified | Blocks current scope? Yes / No. Why: | Blocks public launch? Yes / No. Why: |  |
+
+For non-technical readers, this table can be shortened or folded into the next module and risk tables.
 
 ## 6. Module Acceptance Table
 
