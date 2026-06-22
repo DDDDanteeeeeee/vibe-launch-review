@@ -36,6 +36,29 @@ NO_FIX_ALIASES = [
     "不生成 patch",
 ]
 
+WORKFLOW_ALIASES = [
+    ["four-stage workflow", "四段式工作流", "四阶段工作流"],
+    ["Context Intake", "上下文收集", "项目画像"],
+    ["Five-Gate", "five-gate", "五门"],
+    ["Evidence Ledger", "证据台账", "证据账本"],
+]
+
+EVIDENCE_LEDGER_ALIASES = [
+    ["Evidence Ledger", "证据台账", "证据账本"],
+    ["Evidence item", "证据项"],
+    ["Evidence freshness", "证据新鲜度"],
+    ["Current allowed scope effect", "当前允许范围影响", "当前范围影响"],
+    ["Public scope effect", "公开范围影响", "公开发布影响"],
+    ["Needed proof", "所需证明", "需要补齐的证据"],
+]
+
+SCOPE_IMPACT_ALIASES = [
+    ["Allowed scope", "允许范围"],
+    ["Blocked scope", "暂缓范围", "阻塞范围"],
+    ["Blocks current allowed scope?", "Blocks controlled pilot?", "是否阻塞当前允许范围", "是否阻塞受控试点"],
+    ["Blocks public self-serve launch", "Blocks public launch?", "是否阻塞公开发布"],
+]
+
 PATCH_MARKERS = [
     "diff --git",
     "\n@@ ",
@@ -85,6 +108,11 @@ def has_any(text: str, options: list[str]) -> bool:
     return any(option in text for option in options)
 
 
+def has_any_ci(text: str, options: list[str]) -> bool:
+    lower = text.lower()
+    return any(option.lower() in lower for option in options)
+
+
 def finding_count(text: str) -> int:
     return len(re.findall(r"^###\s+\d+[\.\、]", text, flags=re.MULTILINE))
 
@@ -107,6 +135,30 @@ def localized_label_errors(text: str, case: dict) -> list[str]:
     for pattern in ZH_STRUCTURAL_ENGLISH_PATTERNS:
         if pattern in text:
             errors.append(f"{case_id}: Chinese output contains English structural label {pattern!r}")
+    return errors
+
+
+def workflow_errors(text: str, case_id: str) -> list[str]:
+    errors: list[str] = []
+    for aliases in WORKFLOW_ALIASES:
+        if not has_any_ci(text, aliases):
+            errors.append(f"{case_id}: missing workflow marker {aliases[0]}")
+    return errors
+
+
+def evidence_ledger_errors(text: str, case_id: str) -> list[str]:
+    errors: list[str] = []
+    for aliases in EVIDENCE_LEDGER_ALIASES:
+        if not has_any(text, aliases):
+            errors.append(f"{case_id}: missing evidence ledger field {aliases[0]}")
+    return errors
+
+
+def scope_impact_errors(text: str, case_id: str) -> list[str]:
+    errors: list[str] = []
+    for aliases in SCOPE_IMPACT_ALIASES:
+        if not has_any(text, aliases):
+            errors.append(f"{case_id}: missing scope impact marker {aliases[0]}")
     return errors
 
 
@@ -163,6 +215,15 @@ def validate_case(root: Path, case: dict) -> list[str]:
 
     errors.extend(language_errors(text, case.get("expected_language", "any"), case_id))
     errors.extend(localized_label_errors(text, case))
+
+    if case.get("requires_workflow"):
+        errors.extend(workflow_errors(text, case_id))
+
+    if case.get("requires_evidence_ledger"):
+        errors.extend(evidence_ledger_errors(text, case_id))
+
+    if case.get("requires_scope_impact"):
+        errors.extend(scope_impact_errors(text, case_id))
 
     for phrase in case.get("required_phrases", []):
         if phrase not in text:

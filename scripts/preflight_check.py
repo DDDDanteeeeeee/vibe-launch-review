@@ -20,6 +20,8 @@ REQUIRED_FILES = [
     "examples/function-tests/cases.json",
     "examples/function-tests/conditional-launch-input.md",
     "examples/function-tests/conditional-launch-output.md",
+    "examples/function-tests/public-self-serve-ai-saas-input.md",
+    "examples/function-tests/public-self-serve-ai-saas-output.md",
     "examples/function-tests/evidence-gap-input.md",
     "examples/function-tests/evidence-gap-output.md",
     "examples/function-tests/static-ready-input.md",
@@ -44,6 +46,8 @@ REQUIRED_FILES = [
     "examples/zh-realistic-vibe-app/src/app/admin-panel.tsx",
     "references/risk-taxonomy.md",
     "references/launch-evidence.md",
+    "references/workflow-architecture.md",
+    "references/evidence-ledger.md",
     "references/report-template.md",
     "references/delivery-acceptance-template.md",
     "scripts/package_release.py",
@@ -93,6 +97,8 @@ REQUIRED_SKILL_PHRASES = [
     "Delivery Acceptance",
     "plain language",
     "Context Intake",
+    "four-stage workflow",
+    "Evidence Ledger",
     "Product type",
     "gate applicability",
     "Evidence freshness",
@@ -176,6 +182,8 @@ def check_references(root: Path) -> list[str]:
     errors: list[str] = []
     risk = read_text(root / "references" / "risk-taxonomy.md")
     evidence = read_text(root / "references" / "launch-evidence.md")
+    workflow = read_text(root / "references" / "workflow-architecture.md")
+    ledger = read_text(root / "references" / "evidence-ledger.md")
     template = read_text(root / "references" / "report-template.md")
     delivery_template = read_text(root / "references" / "delivery-acceptance-template.md")
     for label in ["confirmed", "suspected", "evidence_gap"]:
@@ -220,6 +228,27 @@ def check_references(root: Path) -> list[str]:
     for phrase in ["Previously verified, not rerun", "AI Catalog calibration", "Not verified"]:
         if phrase not in evidence:
             errors.append(f"launch evidence missing freshness phrase: {phrase}")
+    for phrase in [
+        "four-stage workflow",
+        "Context Intake and Applicability",
+        "Five-Gate Review",
+        "Evidence Ledger",
+        "Delivery Decision",
+        "Do not turn it into a broad security audit",
+    ]:
+        if phrase not in workflow:
+            errors.append(f"workflow architecture missing phrase: {phrase}")
+    for phrase in [
+        "Required Fields",
+        "Evidence item",
+        "Evidence freshness",
+        "Current allowed scope effect",
+        "Public scope effect",
+        "AI Catalog Calibration",
+        "Public Self-Serve AI SaaS Contrast",
+    ]:
+        if phrase not in ledger:
+            errors.append(f"evidence ledger missing phrase: {phrase}")
     return errors
 
 
@@ -296,6 +325,7 @@ def check_functional_cases(root: Path) -> list[str]:
         "en-private-beta-for-evidence-gaps",
         "en-public-ready-for-static-no-surface-case",
         "en-conditional-launch-for-claimed-controls-with-proof-gaps",
+        "en-public-self-serve-ai-saas-blocks-public-launch",
         "zh-delivery-acceptance-for-nontechnical-reader",
         "zh-standalone-app-project-type-applicability",
         "zh-ai-catalog-controlled-paid-pilot-calibration",
