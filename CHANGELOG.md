@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0
+
+- Added a four-stage review workflow: Context Intake and Applicability, Five-Gate Review, Evidence Ledger, and Delivery Decision.
+- Added `references/workflow-architecture.md` and `references/evidence-ledger.md`.
+- Updated report templates to include scoped verdicts, evidence freshness, and current-scope versus public-scope impact.
+- Added a public self-serve AI SaaS functional case to contrast with the AI Catalog controlled paid pilot calibration case.
+- Tightened functional and preflight validation so workflow and Evidence Ledger structure are checked before packaging.
+
 ## 0.1.0
 
 - Initial public-ready package.

@@ -8,6 +8,8 @@ It is project-type-aware. The review first asks what kind of product this is, th
 
 It is also launch-scope-aware. A controlled paid pilot with prepaid points and manual code issuance should not be judged as if it were a free public self-serve SaaS launch. The report should say what scope is allowed, what scope is blocked, and which gaps matter only before public-scale release.
 
+It now follows a four-stage workflow: Context Intake, five-gate review, Evidence Ledger, and scoped delivery decision. This keeps the review from jumping straight to a verdict before it understands the product, the launch scope, and the freshness of the evidence.
+
 It does not fix code. It finds launch risks, explains why they matter, and tells the builder what evidence or guardrail class is needed before launch.
 
 It can produce two report styles:
@@ -36,6 +38,7 @@ This skill is built for that last checkpoint.
 - A launch verdict: `BLOCK_PUBLIC_LAUNCH`, `PRIVATE_BETA_ONLY`, `CONDITIONAL_LAUNCH`, or `PUBLIC_LAUNCH_READY`.
 - A project profile and gate applicability table.
 - A five-gate summary table.
+- A compact Evidence Ledger that separates current proof, previous proof, and missing proof.
 - Findings with evidence label, evidence, risk, severity, and audit-level recommendations.
 - Evidence gaps that must be resolved before a stronger launch decision.
 - When requested, a plain-language delivery acceptance report covering current status, business flow, verified paths, controlled pilot scope, public-launch blockers, and next work.
@@ -94,6 +97,8 @@ See:
 - `evals/evals.json`
 
 `examples/function-tests/ai-catalog-controlled-pilot-*.md` is the calibration case for a desktop app with a cloud model proxy, prepaid points, manual code issuance, and controlled commercial pilot scope.
+
+`examples/function-tests/public-self-serve-ai-saas-*.md` is the contrast case for a public self-serve AI SaaS where missing rate limits, budget caps, alerts, and circuit breakers should block public launch.
 
 ## Preflight
 

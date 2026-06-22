@@ -99,6 +99,8 @@ Limit the review to these five areas:
 
 For detailed checks and risk wording, read `references/risk-taxonomy.md`.
 For evidence expectations, read `references/launch-evidence.md`.
+For the four-stage workflow, read `references/workflow-architecture.md`.
+For evidence freshness and scope tracking, read `references/evidence-ledger.md`.
 For audit-style reports, read `references/report-template.md`.
 For product delivery acceptance reports, read `references/delivery-acceptance-template.md`.
 
@@ -115,24 +117,31 @@ In Delivery Acceptance mode, keep the five-gate summary, but do not make it the 
 
 ## Workflow
 
-1. Establish Context Intake and launch context.
+Follow a four-stage workflow: **Context Intake and Applicability**, **Five-Gate Review**, **Evidence Ledger**, and **Delivery Decision**.
+
+1. Establish Context Intake and gate applicability.
    - Identify the product type, user exposure, costly actions, and content surface.
    - Identify commercial model, launch scope, and operator model before deciding whether a gap blocks the current scope or only blocks public release.
    - Identify whether the product is a local demo, private beta, invite beta, or public launch candidate.
    - Treat public launch candidates as the strictest context.
    - Create a gate applicability map before writing findings.
 
-2. Map relevant entry points.
+2. Run the five-gate review.
+   - Map relevant entry points before judging risk.
    - Look for user-accessible inputs and costly actions that match the five risk areas.
    - Examples include login, verification codes, comments, profiles, uploads, AI chat boxes, model routes, admin panels, public pages, and share links.
-
-3. Review the five risk gates.
    - Use `references/risk-taxonomy.md`.
    - Record evidence from files, routes, UI descriptions, screenshots, docs, or user-provided materials.
    - Label each issue as `confirmed`, `suspected`, or `evidence_gap`.
    - Separately record evidence freshness as `Verified in this review`, `Previously verified, not rerun`, or `Not verified`.
    - For `Not applicable` gates, state the reason briefly and do not create fake findings.
    - Weight the review toward the gates that match the product's actual type and exposure.
+
+3. Build an Evidence Ledger.
+   - Separate evidence into `Verified in this review`, `Previously verified, not rerun`, and `Not verified`.
+   - For each meaningful evidence item or gap, record the related gate, current allowed scope effect, public scope effect, and needed proof.
+   - Do not treat previously verified evidence as absent only because it was not rerun in the current review.
+   - In Delivery Acceptance mode, compress the ledger into verified paths, module acceptance, risks, and public-launch proof needed.
 
 4. Decide the launch status.
    - Use one stable value:
@@ -145,19 +154,16 @@ In Delivery Acceptance mode, keep the five-gate summary, but do not make it the 
    - If any public-facing SMS/email cost path, UGC path, upload path, AI call path, or demo-only auth path lacks visible guardrails, prefer a blocking or beta-only verdict.
    - Do not penalize a product for a gate that is genuinely not applicable.
    - Do not treat a previously verified path as unproven only because it was not rerun in the current review. Mark it as previously verified and describe the freshness gap.
-
-5. Give audit-level recommendations.
    - State what class of protection or proof should exist.
    - Recommend pause, beta-only, evidence collection, or re-review when appropriate.
    - Do not provide implementation code, patch text, library-specific steps, or service integration instructions.
-
-6. If using Delivery Acceptance mode, turn the same evidence into a plain-language delivery decision.
-   - Say what the current version does.
-   - Say whether the end-to-end user and business flow has evidence.
-   - Separate "can continue", "should pause", and "must prove before public launch".
-   - Explain which gates mattered most for this product type.
-   - Include a module/status table that a non-technical reader can scan.
-   - Keep the exact launch verdict value, but explain it in ordinary language.
+   - If using Delivery Acceptance mode, turn the same evidence into a plain-language delivery decision:
+     - Say what the current version does.
+     - Say whether the end-to-end user and business flow has evidence.
+     - Separate "can continue", "should pause", and "must prove before public launch".
+     - Explain which gates mattered most for this product type.
+     - Include a module/status table that a non-technical reader can scan.
+     - Keep the exact launch verdict value, but explain it in ordinary language.
 
 ## Finding Format
 

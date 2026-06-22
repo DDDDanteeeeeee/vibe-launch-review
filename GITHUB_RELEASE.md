@@ -22,9 +22,11 @@ Focused Codex skill for reviewing vibe-coded or AI-generated apps before public 
 - `app-security`
 - `developer-tools`
 
-## First Release
+## Current Release
 
-Release tag: `v0.1.0`
+Release tag: `v0.2.0`
+
+Release focus: four-stage workflow, Evidence Ledger, and public self-serve AI SaaS calibration.
 
 Artifacts:
 
