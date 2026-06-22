@@ -1,6 +1,6 @@
 {
   "skill_name": "vibe-launch-review",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "evals": [
     {
       "id": "blocks-public-launch-with-all-five-risks",
@@ -93,6 +93,19 @@
         "marks previous evidence freshness correctly",
         "recognizes prepaid points as partial cost-control evidence",
         "still flags public-scale model-call guardrail gaps",
+        "does not include code patches"
+      ]
+    },
+    {
+      "id": "blocks-public-self-serve-ai-saas-without-cost-controls",
+      "prompt": "Use $vibe-launch-review for a public self-serve AI SaaS. Unknown users can sign up for a free trial, upgrade by card, and call /api/generate. The provider key is server-side, but no quota, rate limit, provider budget cap, alert, queue, or circuit-breaker evidence is provided. There is email verification and password reset, but no send-rate or budget evidence. There is no UGC or file upload.",
+      "expected_output": "The report should return BLOCK_PUBLIC_LAUNCH, keep UGC and file upload as not applicable, use the four-stage workflow and Evidence Ledger, explain that public self-serve model calls need rate/budget/alert/circuit-breaker evidence, and avoid code patches.",
+      "assertions": [
+        "verdict is BLOCK_PUBLIC_LAUNCH",
+        "identifies public self-serve launch scope",
+        "includes Evidence Ledger or equivalent evidence freshness tracking",
+        "flags missing model-call rate and budget controls",
+        "keeps UGC moderation not applicable",
         "does not include code patches"
       ]
     }
