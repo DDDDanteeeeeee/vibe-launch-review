@@ -16,6 +16,12 @@ The ledger is a compact proof table created before the final verdict. It should 
 | Public scope effect | Whether this item blocks public self-serve launch or large-scale release. |
 | Needed proof | What proof is needed before a stronger decision. |
 
+When user data, uploaded files, model calls, logs, or stored outputs are involved, add one short data/privacy note:
+
+- What data is involved, where it goes, what log/access/retention/deletion proof exists, and whether this affects current scope or public launch.
+
+Do not turn this into a separate legal compliance section.
+
 ## Freshness Labels
 
 - `Verified in this review`: checked directly during this review.
@@ -31,39 +37,4 @@ Use direct language:
 - Blocks current allowed scope: Yes / No. Why:
 - Blocks public self-serve launch or large-scale release: Yes / No. Why:
 
-Do not write only "launch risk". Say which launch scope is affected.
-
-## Report Usage
-
-For audit reports, include an `Evidence Ledger` section when it helps show why the verdict is scoped.
-
-For product delivery acceptance reports, do not dump a long raw ledger by default. Instead, fold the ledger into:
-
-- Verified Paths
-- Module Acceptance Table
-- Current Risks And Blockers
-- Must-Have Before Public Launch
-
-If the user asks for the raw review record, include the full ledger.
-
-## AI Catalog Calibration
-
-AI Catalog is the controlled paid pilot calibration case:
-
-- Real DeepSeek smoke and point deduction were previously verified.
-- Real `.ai` file smoke was previously verified.
-- If the current review lacks `ADMIN_TOKEN`, those paths are `Previously verified, not rerun`, not `Not verified`.
-- Missing per-IP, per-device, or per-license limits do not directly block the controlled paid pilot because prepaid points limit one account's cost.
-- The same missing protections still block public self-serve launch or large-scale public release.
-
-Correct interpretation: `CONDITIONAL_LAUNCH` with allowed scope `controlled paid pilot` and blocked scope `public self-serve launch / large-scale public release`.
-
-## Public Self-Serve AI SaaS Contrast
-
-A public AI SaaS is different:
-
-- Unknown users can sign up or use the product without operator review.
-- Model calls can create direct provider cost.
-- Abuse can scale before an operator notices.
-
-For this context, missing quota, rate limits, budget caps, alerts, queue controls, or circuit breakers should normally block public self-serve launch until evidence is provided.
+Do not write only launch
