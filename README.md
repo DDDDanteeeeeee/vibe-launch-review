@@ -10,6 +10,10 @@ It is also launch-scope-aware. A controlled paid pilot with prepaid points and m
 
 It now follows a four-stage workflow: Context Intake, five-gate review, Evidence Ledger, and scoped delivery decision. This keeps the review from jumping straight to a verdict before it understands the product, the launch scope, and the freshness of the evidence.
 
+It keeps the user experience simple. Technical users can use it to save review time. Non-technical vibe coders can use it to get a clear launch decision without learning security jargon.
+
+Data and privacy handling is one extra view inside the existing gates, not a new legal-compliance gate. When an app handles files, user content, AI context, model output, or logs, the report adds a short feedback block: what data is involved, where it goes, what log/access/retention/deletion proof exists, and whether this affects the current launch scope.
+
 It does not fix code. It finds launch risks, explains why they matter, and tells the builder what evidence or guardrail class is needed before launch.
 
 It can produce two report styles:
@@ -39,6 +43,7 @@ This skill is built for that last checkpoint.
 - A project profile and gate applicability table.
 - A five-gate summary table.
 - A compact Evidence Ledger that separates current proof, previous proof, and missing proof.
+- A short data and privacy handling feedback block when user files, AI context, model outputs, or logs matter.
 - Findings with evidence label, evidence, risk, severity, and audit-level recommendations.
 - Evidence gaps that must be resolved before a stronger launch decision.
 - When requested, a plain-language delivery acceptance report covering current status, business flow, verified paths, controlled pilot scope, public-launch blockers, and next work.
@@ -129,3 +134,4 @@ python scripts/package_release.py . --dist ../dist
 ## License
 
 MIT.
+
