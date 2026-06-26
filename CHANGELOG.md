@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+- Added a data and privacy handling view inside the existing five-gate review flow, without turning the skill into a legal-compliance audit.
+- Updated delivery acceptance outputs to include a short, reader-friendly data/privacy feedback block when user files, AI inputs, AI outputs, or logs matter.
+- Tightened functional validation so selected cases must prove data/privacy feedback coverage before packaging.
+
 ## 0.2.0
 
 - Added a four-stage review workflow: Context Intake and Applicability, Five-Gate Review, Evidence Ledger, and Delivery Decision.
@@ -19,3 +25,4 @@
 - Added explicit evidence labels to finding format and functional coverage for `CONDITIONAL_LAUNCH`.
 - Tightened functional validation so each case must keep both its input fixture and output report.
 - Added a Chinese real-user acceptance case that asks for fixes but must remain review-only.
+
