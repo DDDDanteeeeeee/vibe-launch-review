@@ -30,6 +30,14 @@ This review follows the four-stage workflow and does not implement fixes, genera
 
 This is not a controlled paid pilot. Because unknown users can create accounts and trigger paid model calls, missing public-scale cost controls are public-launch blockers.
 
+## Data And Privacy Handling Feedback
+
+- What data or files are involved: user prompts, generated drafts, account email addresses, and likely request logs for `/api/generate`.
+- Where they go: user prompts and generation context go from the public web app to the backend route and then to the model provider. The packet does not show whether logs store full prompts or generated output.
+- Log, access, retention, or deletion evidence: not provided. There is no proof for prompt log redaction, operator access limits, retention duration, or user deletion behavior.
+- Impact on current allowed scope: this does not block limited private testing with known users if operators explain the data handling limits and watch usage manually.
+- Impact on public launch: this blocks public self-serve launch until prompt/log handling, access, retention, deletion, and model-call cost controls have visible proof.
+
 ## Gate Applicability
 
 | Gate | Applicability | Reason |
@@ -111,3 +119,4 @@ This is not a controlled paid pilot. Because unknown users can create accounts a
 ## Out Of Scope
 
 This review is limited to the five Vibe Launch Review gates and does not implement fixes, generate patches, perform penetration testing, or validate production infrastructure.
+
