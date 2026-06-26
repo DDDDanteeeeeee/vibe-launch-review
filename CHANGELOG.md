@@ -25,4 +25,3 @@
 - Added explicit evidence labels to finding format and functional coverage for `CONDITIONAL_LAUNCH`.
 - Tightened functional validation so each case must keep both its input fixture and output report.
 - Added a Chinese real-user acceptance case that asks for fixes but must remain review-only.
-
